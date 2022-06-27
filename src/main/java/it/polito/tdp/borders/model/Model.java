@@ -1,6 +1,5 @@
 package it.polito.tdp.borders.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -19,8 +18,6 @@ public class Model {
 
 	private Graph<Country, DefaultEdge> graph;
 	private Map<Integer, Country> countriesMap;
-	
-	private Map<Country, Integer> personeStanziali ;
 
 	public Model() {
 		this.countriesMap = new HashMap<>();
@@ -64,24 +61,16 @@ public class Model {
 
 	}
 	
-	public int simula(Country partenza) {
-		Simulatore sim = new Simulatore(this.graph) ;
-		sim.init(partenza, 1000);
-		sim.run();
-		this.personeStanziali = sim.getPersone();
-		return sim.getnPassi() ;
+	public String simula(Country country) {
+		Simulatore s = new Simulatore();
+		s.init(this.graph, country);
+		s.run();
+		String stringa = "Passi totali simulazione: "+s.getNumeroPassi();
+		for(Country c: s.getElencoStatiConStanzianti()) {
+			stringa += "\n"+c+" = "+c.getMigrantiPresenti();
+		}
+		return stringa;
 	}
 	
-	public List<CountryAndNumber> getPersoneStanziali() {
-		List<CountryAndNumber> lista = new ArrayList<CountryAndNumber>() ;
-		for(Country c: this.personeStanziali.keySet()) {
-			int persone = this.personeStanziali.get(c) ;
-			if(persone!=0) {
-				lista.add( new CountryAndNumber(c, persone));
-			}
-		}
-		
-		Collections.sort(lista) ; 
-		return lista ;
-	}
+	
 }

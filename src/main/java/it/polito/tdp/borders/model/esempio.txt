@@ -1,5 +1,7 @@
 Evento ( T, Country, QUantità di persone )
 
+// Coda degli eventi:
+
 Evento ( 1, Italia, 1000 )
 	500 stanziali in Italia
 	4 confinanti -> 125 persone per stato confinante
@@ -15,11 +17,15 @@ Evento (2, Svizzera, 125)
 	
 Evento (2, Austria, 125)
 Evento (2, Slovenia, 125)
+
+// a seguito dell'evento 2 della Francia
 Evento (3, Spagna, 12)
 Evento (3, Italia, 12)
 Evento (3, Germania, 12)
 Evento (3, Belgio, 12)
 Evento (3, Olanda, 12)
+
+// a seguito dell'evento 2 della Svizzera
 Evento (3, Francia, 15)
 Evento (3, Italia, 15)
 Evento (3, Germania, 15)
